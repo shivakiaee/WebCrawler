@@ -15,7 +15,8 @@ namespace WebCrawler
                     .AddScoped<IHttpHandler, HttpHandler>()
                     .AddScoped<ICrawler, Crawler>()
                     .AddScoped<IDownloader, Downloader>()
-                    .AddScoped<IDownloadManager, DownloadManager>();
+                    .AddScoped<IDownloadManager, DownloadManager>()
+                    .AddScoped<IWorker, Worker>();
 
             return services;
         }
