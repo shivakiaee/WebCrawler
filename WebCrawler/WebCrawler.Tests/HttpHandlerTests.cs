@@ -12,7 +12,7 @@ namespace WebCrawler.Tests
         {
             string url = "https://tretton37.com";
             var _httpHandler = (IHttpHandler)serviceProvider.GetRequiredService(typeof(IHttpHandler));
-
+            //better approch is using of Mock http server
             var result = await _httpHandler.GetStringAsync(url);
 
             Assert.AreEqual(result != null, true);
@@ -23,7 +23,7 @@ namespace WebCrawler.Tests
         {
             string url = "https://tretton37";
             var _httpHandler = (IHttpHandler)serviceProvider.GetRequiredService(typeof(IHttpHandler));
-
+            //better approch is using of Mock http server
             var result = await _httpHandler.GetStringAsync(url);
 
             Assert.AreEqual(result == null, true);
