@@ -36,7 +36,6 @@ namespace WebCrawler.Services
 
             while (true)
             {
-
                 //It is better to get number of parallel tasks(5 hardcoded) from input
                 var linksToCrawl = _linkQueues.Where(l => !l.IsCrawled).Take(5).ToList();
                 TaskList = new List<Task>();
