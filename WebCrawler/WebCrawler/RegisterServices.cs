@@ -11,7 +11,9 @@ namespace WebCrawler
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddScoped<IHtmlDocumentHandler, HtmlDocumentHandler>();
+            services.AddScoped<IHtmlDocumentHandler, HtmlDocumentHandler>()
+                    .AddScoped<IHttpHandler, HttpHandler>();
+            
             return services;
         }
     }
