@@ -39,13 +39,13 @@ namespace WebCrawler.Services
                 //It is better to get number of parallel tasks(5 hardcoded) from input
                 var linksToCrawl = _linkQueues.Where(l => !l.IsCrawled).Take(5).ToList();
                 TaskList = new List<Task>();
-                for (int i = 0; i < _linkQueues.Where(l => !l.IsCrawled).Count(); i++)
+                for (int i = 0; i < linksToCrawl.Count; i++)
                 {
                     TaskList.Add(_downloader.Download(linksToCrawl[i].Link, _linkQueues));
                 }
                 Task.WaitAll(TaskList.ToArray());
 
-                if (_linkQueues.Count == 0)
+                if (_linkQueues.Where(l => !l.IsCrawled).Count() == 0)
                 {
                     //todo: finish the app and show a goodby message
                 }
