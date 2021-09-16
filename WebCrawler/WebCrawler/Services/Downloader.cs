@@ -29,15 +29,23 @@ namespace WebCrawler.Services
         /// <returns></returns>
         public async Task Download(string url, List<LinkQueue> linkQueues)
         {
-            await _crawler.Crwal(url, linkQueues);
-
-            var result = await _downloalManager.DownloadPage(url);
-
-            if (result)
+            try
             {
-                var link = linkQueues.Find(url);
-                link.IsCrawled = true;
+                await _crawler.Crwal(url, linkQueues);
+
+                var result = await _downloalManager.DownloadPage(url);
+
+                if (result)
+                {
+                    var link = linkQueues.Find(url);
+                    link.IsCrawled = true;
+                }
             }
+            catch
+            {
+                //todo: WriteLogError for all exceptions
+            }
+
         }
     }
 }
