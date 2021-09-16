@@ -11,7 +11,9 @@ namespace WebCrawler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello To Web Crawler Console App");
+            Console.WriteLine("Hello to web crawler console app");
+
+            Thread.Sleep(1000);
 
             var _serviceCollection = new ServiceCollection();
             var _serviceProvider = _serviceCollection.AddServices()
@@ -25,17 +27,22 @@ namespace WebCrawler
             });
 
             task.Start();
+
             while (!task.IsCompleted)
             {
                 //in this approach, When crawling starts, we are not aware of total counts of links.
                 //so, we can not show progress with the specific end point.
                 //That is why very simple counter is used which displays only crawled links's count not necessary downloaded links's count
                 Console.Clear();
+                Console.WriteLine(@$"You can find downloaded files in C:\\tretton37 path");
                 var crawledLinks = worker.LinksQueue.Count();
                 Console.WriteLine($"{crawledLinks} was crawled");
                 Thread.Sleep(500);
             }
-            // task.Wait();//show message "finish"
+
+           Console.WriteLine($"{worker.StartUrl} is already crawled.");
+           Console.WriteLine("Hope you enjoyed the crawler app");
+
         }
     }
 }
