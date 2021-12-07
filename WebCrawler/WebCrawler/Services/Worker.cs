@@ -34,7 +34,7 @@ namespace WebCrawler.Services
                 IsCrawled = false,
             });
 
-            while (true)
+            while (_linkQueues.Where(l => !l.IsCrawled).Count()>0)
             {
                 //It is better to get number of parallel tasks(5 hardcoded) from input
                 var linksToCrawl = _linkQueues.Where(l => !l.IsCrawled).Take(5).ToList();
@@ -44,11 +44,6 @@ namespace WebCrawler.Services
                     TaskList.Add(_downloader.Download(linksToCrawl[i].Link, _linkQueues));
                 }
                 Task.WaitAll(TaskList.ToArray());
-
-                if (_linkQueues.Where(l => !l.IsCrawled).Count() == 0)
-                {
-                    //todo: finish the app and show a goodby message
-                }
             }
 
         }
