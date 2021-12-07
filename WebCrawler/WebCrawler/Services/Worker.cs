@@ -11,7 +11,7 @@ namespace WebCrawler.Services
     /// </summary>
     public class Worker : IWorker
     {
-        private List<LinkQueue> _linkQueues = new List<LinkQueue>();
+        public List<LinkQueue> _linkQueues = new List<LinkQueue>();
         public List<LinkQueue> LinksQueue => _linkQueues;
         private List<Task> TaskList;
         private readonly IDownloader _downloader;
