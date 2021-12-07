@@ -88,6 +88,9 @@ namespace WebCrawler.Services
         /// <returns></returns>
         private string PrepareLink(string link,string baseUrl)
         {
+            if (link.Contains("www.google.se"))
+                return null;
+
             if (link.StartsWith(baseUrl))
             {
                 return link;
